@@ -44,7 +44,6 @@ function addrow(row_index,row_element_arr){
       for(let i=0;i<row_element_arr.length;i++){
           //else html+='<td>'+String(i)+'</td>';
           html+='<td>'+String(row_element_arr[i])+'</td>';
-      
           if(i==row_element_arr.length-1){
             //console.log(6666666);
             if(row_index!=0)
@@ -99,7 +98,7 @@ var remove_reason=()=>{
               }
           }
           tips();
-          
+
           remove_reason();  
           delete_elect_btn();
             add_btn();
@@ -206,7 +205,7 @@ var modify_line=(element)=>{
   // console.log("this.parentNode321",parent);
   //直接没了？this.parentNode321 null为什么 因为我把innerhtml改了，本来里面是一个子元素也就是this，改了自然没了，因此用一个parent保存，类似于指针的作用
 
-  if(j_index==child_get_order(parent)||child_get_order(parent)==0)
+  if(j_index==child_get_order(parent)||child_get_order(parent)==0)//如果修改了month x轴坐标或者当前正在显示的那一列的数据，update图表
 {
   show_chart(j_index);
 }
@@ -343,8 +342,8 @@ var deleteline=(element)=>{
 }
 
 //从下往上没问题，从上往下，第一个正常
-var init_chart=()=>{ 
-  
+var init_chart=()=>{
+
   //设置元素
   var block_chart=document.createElement('div');
   block_chart.id='chart';
@@ -355,10 +354,9 @@ var init_chart=()=>{
    //全局变量
   var tab=document.getElementById('tab');
   console.log('table2',tab.rows);
-    for(var j=1;j<tab.rows[0].cells.length-1;j++){
-    
+    for(var j=1;j<tab.rows[0].cells.length-1;j++){//第一列是x轴
      tab.rows[0].cells[j].addEventListener("click",function(){
-       console.log('j',this);
+      console.log('j',this);
       var order=child_get_order(this);
       j_index=order;
       //同步全局变量,只有点击的时候才会更新，表示当前应该选择哪类数据来显示
