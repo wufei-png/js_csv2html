@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test1</title>
+<script src="echarts.js"></script>
+<script src="./chart.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="d3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    
+<style>
+    html,body{
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+    }
+    #box1 
+    {
+        float:left;
+        width: 45%;
+        height: 100%;
+        box-sizing: border-box;
+        border: 2px solid black;
+    }
+    #box2 
+    {
+        float:right;
+        width: 55%;
+        height: 100%;
+        box-sizing: border-box;
+        border: 2px solid black;
+        border-left: 0px solid black;
+    }
+    </style>
+</head>
+<body>
+    <input type='file' id="elect_file">
+    <div id="box1">
+        box1
+    </div>
+    <div id="box2">
+        box2
+        <div id="box2_inner"></div>
+    </div>
+</body>
+<script src="./index.js"></script>
+<script type="text/javascript">
+    var data1 = [];
+    var data2 = [];
+
+     var myChart = echarts.init(document.getElementById('box1'));
+var option;
+
+// prettier-ignore
+const hours = [
+    '1','2','3','4','5','6','7','8','9','10','11','12',
+];
+// prettier-ignore
+const days = [
+    'female','local','USA','SA','EU','MEA','ASIA','businessmen','tourists','DR','agency','AC','u20','zoto35','z5to55','m55','price','LoS','occupancy','conventions'
+];
+// prettier-ignore
+const data = data1
+    .map(function (item) {
+    return [item[1], item[0], item[2],item[3],item[4],item[5],item[6],item[7],item[8],item[9],item[10],item[11],item[12],item[13],item[14]],item[15],item[16],item[17],item[18],item[19],item[20];
+});
+option = {
+  title: {
+    text: 'Punch Card of Github'
+  },
+  legend: {
+    data: ['Punch Card'],
+    left: 'right'
+  },
+  tooltip: {
+    position: 'top',
+    formatter: function (params) {
+      return (
+        params.value[2] +
+        ' commits in ' +
+        hours[params.value[0]] +
+        ' of ' +
+        days[params.value[1]]
+      );
+    }
+  },
+  grid: {
+    left: 2,
+    bottom: 10,
+    right: 10,
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    data: hours,
+    boundaryGap: false,
+    splitLine: {
+      show: true
+    },
+    axisLine: {
+      show: false
+    }
+  },
+  yAxis: {
+    type: 'category',
+    data: days,
+    axisLine: {
+      show: false
+    }
+  },
+  series: [
+    {
+      name: 'Punch Card',
+      type: 'scatter',
+      symbolSize: function (val) {
+        return val[2] * 2;
+      },
+      data: data,
+      animationDelay: function (idx) {
+        return idx * 5;
+      }
+    }
+  ]
+};
+
+option && myChart.setOption(option);
+</script>
+</html>
