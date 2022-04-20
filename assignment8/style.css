@@ -1,0 +1,153 @@
+* {
+  font-family: 微软雅黑;
+}
+table {
+  text-align: center;
+  border-collapse: collapse;
+  border: 1px solid #808080;
+}
+td {
+  padding: 0px 10px 0px 10px;
+}
+body {
+  background-color: #eaeaef;
+}
+#elect_file {
+  /* cursor: pointer; */
+}
+input[type="file"] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 20px;
+  color: #b8b8b8;
+}
+#add {
+  cursor: pointer;
+  /* position: absolute;
+  top: 15%;
+  left: 50%; */
+  margin-left: 60px;
+  margin-right: 10px;
+  font-size: 15px;
+  color: black;
+}
+#tab > tbody:nth-child(1) > tr > td:not(:last-child, :first-child) {
+  cursor: pointer;
+}
+#reason {
+  cursor: pointer;
+  position: absolute;
+  top: 80%;
+  left: 40%;
+}
+
+#exportExcel {
+  position: absolute;
+  top: 23%;
+  left: 5%;
+}
+
+table {
+  *border-collapse: collapse;
+  width: 100%;
+}
+
+#tab {
+  border: solid #ccc 1px;
+  border-radius: 6px;
+  box-shadow: 0 1px 1px #ccc;
+}
+#tab tr {
+  transition: all 0.1s ease-in-out; /*过渡效果*/
+}
+#inp {
+  width: 10px;
+}
+#tab tr:hover {
+  background: #fbf8e9;
+}
+
+#tab td {
+  /* cursor: pointer; */
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+#change_style {
+  position: relative;
+  top: 770px;
+  left: 55%;
+  font-size: 10px;
+  height: 35px;
+  border-width: 0px; /* 边框宽度 */
+  border-radius: 3px; /* 边框半径 */
+  background: #1e90ff; /* 背景颜色 */
+  cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+  outline: none; /* 不显示轮廓线 */
+  font-family: Microsoft YaHei; /* 设置字体 */
+  color: white; /* 字体颜色 */
+}
+#change_style:hover {
+  background: #5599ff;
+}
+#save {
+  /* position: absolute;
+  top: 120px;
+  left: 65%; */
+  font-size: 15px;
+  /* height: 35px; */
+  margin-left: 10px;
+  margin-right: 10px;
+  border-width: 0px; /* 边框宽度 */
+  border-radius: 3px; /* 边框半径 */
+  background: #1e90ff; /* 背景颜色 */
+  cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+  outline: none; /* 不显示轮廓线 */
+  font-family: Microsoft YaHei; /* 设置字体 */
+  color: white; /* 字体颜色 */
+}
+#save:hover {
+  background: #5599ff;
+}
+.delete {
+  cursor: pointer;
+}
+#tab td :focus {
+  outline: 1px;
+  border-color: #5599ff;
+  /* width: 10px; */
+}
+.select {
+  cursor: pointer;
+  font-size: 15px;
+  color: black;
+  margin-left: 5px;
+
+}
+/* .select_bar{
+  position: relative;
+  margin-top: 100px;
+  display: flex;
+} */
+#select_bar{
+  margin-left: 10px;
+  margin-right: 20px;
+  display: flex;
+    }
+#navigator{
+  position: relative;
+  top: 110px;
+  left: 190px;
+  display: flex;
+}
+#stack{
+  position: relative;
+  top: 800px;
+  left: 500px;
+}
+#dashboard{
+  position: relative;
+  top: 1000px;
+  left: 500px;
+}

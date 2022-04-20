@@ -1,7 +1,7 @@
 class Chart {
     constructor(){
-        this._width = 600;
-        this._height = 400;
+        this._width = 800;
+        this._height = 600;
         this._margins = {top:30, left:30, right:30, bottom:30};
         this._data = [];
         this._scaleX = null;
@@ -121,7 +121,10 @@ class Chart {
 
     renderChart(){
         if (!this._box){
-            this._box = d3.select('#box2')//改这里
+            // console.log('wf',d3.select('.wf'));
+            // console.log('stack',d3.select('.stack'));
+            // d3.select('#stack').style('background-color','red');
+            this._box = d3.select('#stack')//改这里
                             .append('div')
                             .attr('id','stack_inner');
         }

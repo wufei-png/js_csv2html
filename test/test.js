@@ -1,72 +1,50 @@
-var margin = {top: 20, right: 20, bottom: 20, left: 20},
-	width = 500 - margin.right - margin.left,
-	height = 500 - margin.top - margin.bottom,
-	radius = width/2;
-  // .range(["#BBDEFB","#98CAF9","#64B5F6","#42A5F5","#2196F3","#1E88E5","#1976D2"]);
-var color = d3.scaleOrdinal()
-	.range(["#BBDEFB","#98CAF9","#64B5F6","#42A5F5"]);
-  var arc = d3.arc()
-	.outerRadius( radius - 10)
-	.innerRadius(0);
+var freqData=[
+{State:'AL',freq:{low:4786, mid:1319, high:249}}
+,{State:'AZ',freq:{low:1101, mid:412, high:674}}
+,{State:'CT',freq:{low:932, mid:2149, high:418}}
+,{State:'DE',freq:{low:832, mid:1152, high:1862}}
+,{State:'FL',freq:{low:4481, mid:3304, high:948}}
+,{State:'GA',freq:{low:1619, mid:167, high:1063}}
+,{State:'IA',freq:{low:1819, mid:247, high:1203}}
+,{State:'IL',freq:{low:4498, mid:3852, high:942}}
+,{State:'IN',freq:{low:797, mid:1849, high:1534}}
+,{State:'KS',freq:{low:162, mid:379, high:471}}
+];
 
-var labelArc = d3.arc()
-	.outerRadius(radius - 50)
-	.innerRadius(radius - 50)
-  var pie = d3.pie()
-	.sort(null)
-	.value(function(d) { 
-	//console.log(d[1]);
-	return d.value; });
-  var svg = d3.select("body")
-	.append("svg")
-	.attr("width",width)
-	.attr("height",height)
-	.append("g")
-	.attr("transform","translate("+ width/2 +"," + height/2 +")");
-  var data = [
-    {
-        "index": 'u20',
-        "value": 2
-    },
-    {
-        "index": '20to35',
-        "value": 25
-    },
-    {
-        "index": '35to55',
-        "value": 48
-    },
-    {
-        "index": 'm55',
-        "value": 25
-    }
-  ]
-
-  var g = svg.selectAll(".arc")
-		.data(pie(data))
-		.enter().append("g")
-		.attr("class","arc");
-    g.append("path")
-		.attr("d",arc)
-		.style("fill",function(d) {
-			return color(d.data.index);
-		})
-		.transition()
-		.ease(d3.easeLinear)
-		.duration(2000)
-		.attrTween("d",pieTween);
-    g.append("text")
-		.transition()
-		.ease(d3.easeLinear)
-		.duration(2000)
-		.attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-		.attr("dy",".35em")
-		.text(function(d){ 
-		console.log(d);
-		return d.data.index;});
-    function pieTween(b){
-		b.innerRadius = 0;
-		var i = d3.interpolate({startAngle:0,endAngle:0},b);
-		return function(t) {return arc(i(t));};
+console.log(freqData[0])
+console.log(freqData[0][0])
+var freqtmp={}
+freqtmp['low']=1;
+freqtmp.high=2;
+var wf='wf'
+var tmp={}
+tmp.State='ch'
+tmp.freq=freqtmp
+console.log(tmp);
+var sum_data=(data)=>{
+	// for (var i=0;i<data.length;i++){
+			let sum=0;
+	for(var key in data){
+					//console.log(key,data[0][key]);
+					//console.log("data[i][key]",data[i][key]);
+					sum+=data[key];
+					//console.log('sum',sum);
+					
+	}
+;
+	// data[i].sum=sum;
+	// }
+	return sum;
+	}
+	var x;
+	var txt="";
+	var person_key={};
+	var person={fname:1,lname:"Gates",age:56};  //对象
+	var i=0;
+	for (x in person)
+	{
+		person_key[x]=i;
+		i++;
 	}
 
+	console.log(person_key);

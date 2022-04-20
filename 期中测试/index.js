@@ -2,8 +2,8 @@
 
 var data_d3=[];
 var data_key=[];
-for (var i=0;i<6;i++)
-data_d3.push({"month":i,"name1":i+1,"name2":i+2,"name3":i+3,"name4":i+4});
+for (var i=0;i<12;i++)
+data_d3.push({"month":i,"name1":i+1,"name2":i+2,"name3":i+3});
 // console.log("indexOf",indexOf(data[0]));
 var sum_data=(data)=>{
 // for (var i=0;i<data.length;i++){
@@ -31,63 +31,6 @@ console.log('data_key',data_key);
 
 console.log('data',data_d3);
 
-var data_csv=[];
-var init =()=>{
-    console.log("elect_file",document.getElementById("elect_file"));
-    var input=document.getElementById('elect_file');
-    input.addEventListener('change',openFile);
-    }
-    init();
-// function addrow(data_csv,row_element_arr){
-//         var data_row=[];
-//         for(let i=0;i<row_element_arr.length;i++){
-//             //else html+='<td>'+String(i)+'</td>';
-//           data_row.push(String(row_element_arr[i]));
-//             }
-//         data_csv.push(data_row)
-//     }
-var openFile = function()
-{
-    console.log("elect_file",document.getElementById("elect_file"));
-  var resultFile = document.getElementById("elect_file").files[0];
-    var input = this.target;
-    console.log("event.target.files[0]",this.target.files[0]);
-    console.log("event.target.files",this.target.files);
-    console.log("event.target",this.target);
-    console.log("event",this);
-    console.log("resultFile",resultFile);
-    if(resultFile){
-    var reader = new FileReader();
-    reader.onload = function() 
-    //读取完异步调用
-    {  
-        console.log("reader",reader);
-        if(reader.result) 
-        {
-            //文件内容:reader.result
-            var arr=reader.result.split("\n");
-            console.log("为什么");
-            console.log("arr",arr);
-            // $("#output").html(reader.result);
-            for (let index=0; index < arr.length; index++)
-            {
-              // arr[index],一行数据
-                row_element_arr=arr[index].split(",");
-                console.log('arr[',index,']',row_element_arr)
-                data_csv.push(row_element_arr);
-            }
-        }
-
-    };
-
-    reader.readAsText(resultFile,'UTF-8');//异步函数，挂载到onload执行回调
-  }
-  else{
-    alert("文件打不开")
-  }
-  console.log("data_csv",data_csv);
-};
-
 
 var d3chart=(data)=>{
 console.log('data',data);
@@ -98,7 +41,7 @@ console.log('data',data);
         margins: {top: 80, left: 80, bottom: 50, right: 80},
         textColor: 'black',
         gridColor: 'gray',
-        tickShowGrid: [60, 120, 180],
+        tickShowGrid: [0],
         title: '堆叠直方图',
         hoverColor: 'white',
         animateDuration: 1000
@@ -130,12 +73,16 @@ console.log('data',data);
         let bars = groups.enter()
                     .append('g')
                   .merge(groups)
-                    .attr('class', (d) => 'g ' + d.key)
+                    .attr('class', (d) => {
+
+                        return ('g ' + d.key)})
                     .attr('fill', (d,i) => chart._colors(i))
                     .selectAll('.bar')
                     .data((d)=>{
                         return d.map((item) => {
                             item.index = d.index;
+                            console.log('d.index',d.index);
+                            console.log('d.key',d.key);
                             item.name = d.key;
                             return item;
                         });
@@ -148,7 +95,12 @@ console.log('data',data);
                     .append('rect')
                     .attr('class', 'bar')
                 .merge(bars)
-                    .attr('x', (d) => chart.scaleX(d.data.month))
+                    .attr('x', (d) => {
+                        // console.log('d.data',d.data);
+                        // // console.log('d.data[0].month',d.data[0].month);
+                        console.log('d[0]',d[0]);
+                        console.log('d[1]',d[1]);
+                        return chart.scaleX(d.data.month);})
                     .attr('y', (d) => chart.scaleY(d[0]))
                     .attr('width', chart.scaleX.bandwidth())
                     .attr('height', 0)
@@ -230,7 +182,10 @@ console.log('data',data);
                 .attr('stroke', config.textColor);
 
     }
+var select_data_hover=()=>{
 
+
+}
     /* ----------------------------绑定鼠标交互事件------------------------  */
     chart.addMouseOn = function(){
         //防抖函数
@@ -249,9 +204,11 @@ console.log('data',data);
 
         d3.selectAll('.bar')
             .on('mouseover', function(d){
+                console.log('d',(d));
                 const e = d3.event;
                 const position = d3.mouse(chart.svg().node());
-
+                // console.log('position',position[0]);
+                // console.log('chart.svg().node()',chart.svg().node());
                 d3.select(e.target)
                     .attr('fill', config.hoverColor);
                 
@@ -261,7 +218,7 @@ console.log('data',data);
                     .attr('x', position[0]+5)
                     .attr('y', position[1])
                     .attr('fill', config.textColor)
-                    .text( d.name + ':' + d.data.food + '元');
+                    .text( d.name + ':'+d.data[String(d.name)]);
             })
             .on('mouseleave', function(d){
                 const e = d3.event;
